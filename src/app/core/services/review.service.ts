@@ -65,11 +65,11 @@ export class ReviewService {
   constructor(private http: HttpClient) { }
 
   getReviews(): Observable<StudentReview[]> {
-    return of(this.reviews).pipe(delay(200));
+    return of(this.reviews);
   }
 
   getMemories(): Observable<MemoryPhoto[]> {
-    return of(this.memories).pipe(delay(150));
+    return of(this.memories);
   }
 
   getQuoteTestimonial(): Observable<typeof this.quoteTestimonial> {

@@ -142,32 +142,46 @@ export class CampService {
     ]
   };
 
-  private apiUrl = 'http://localhost:3000/api';
+  private adsBanner: AdsBanner = {
+    tagline: 'แคมป์เรียนภาษาจีน',
+    title: 'เปิดรับสมัครรอบธันวาคม 2026',
+    price: 48900,
+    originalPrice: 52900,
+    badgeLabel: 'HOT DEAL',
+    discountText: 'สมัครคู่ลด 1,000 บาท/คน',
+    rounds: [
+      { name: 'รอบ 1', deadline: '31 ก.ค. 2026' },
+      { name: 'รอบ 2', deadline: '30 ก.ย. 2026' }
+    ],
+    ctaText: 'สมัครเรียนเลย',
+    backgroundImageUrl: '/assets/images/Ads-Banner.png'
+  };
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   getCamps(): Observable<Camp[]> {
-    return this.http.get<Camp[]>(`${this.apiUrl}/camps`);
+    return of(this.camps);
   }
 
   getCampById(id: string): Observable<Camp | undefined> {
-    // In a real app, you'd fetch from API: return this.http.get<Camp>(`${this.apiUrl}/camps/${id}`);
-    // But since the API returns an array, we'll map it for now.
-    return this.http.get<Camp[]>(`${this.apiUrl}/camps`).pipe(
-      map(camps => camps.find(c => c.id === id))
-    );
+    return of(this.camps.find(c => c.id === id));
   }
 
   updateCamp(id: string, camp: Camp): Observable<any> {
-    return this.http.put(`${this.apiUrl}/camps/${id}`, camp);
+    const index = this.camps.findIndex(c => c.id === id);
+    if (index !== -1) {
+      this.camps[index] = camp;
+    }
+    return of({ success: true });
   }
 
   getAdsBanner(): Observable<AdsBanner> {
-    return this.http.get<AdsBanner>(`${this.apiUrl}/ads-banner`);
+    return of(this.adsBanner);
   }
 
   updateAdsBanner(banner: AdsBanner): Observable<any> {
-    return this.http.put(`${this.apiUrl}/ads-banner`, banner);
+    this.adsBanner = banner;
+    return of({ success: true });
   }
 
   getDormAmenities(): Observable<DormAmenity[]> {
@@ -175,7 +189,7 @@ export class CampService {
   }
 
   getDormRooms(): Observable<DormRoom[]> {
-    return of(this.dormRooms).pipe(delay(500));
+    return of(this.dormRooms);
   }
 
   getProjectDetail(): Observable<ProjectDetail> {

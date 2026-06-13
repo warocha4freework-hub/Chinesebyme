@@ -38,6 +38,6 @@ export class ContactService {
     return of({
       success: true,
       message: 'ส่งคำขอข้อมูลเรียบร้อยแล้ว! เจ้าหน้าที่จะติดต่อกลับโดยเร็วที่สุด'
-    }).pipe(delay(800)); // Delay to simulate network roundtrip
+    });
   }
 }

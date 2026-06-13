@@ -1,0 +1,132 @@
+<div class="fade-in">
+  
+  <!-- Hero Banner -->
+  <section class="relative pt-32 pb-44 bg-gradient-to-b from-sky-300 via-sky-100 to-sky-50 overflow-hidden min-h-[600px] md:min-h-[750px] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+      <span class="inline-block bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold text-navy-800 tracking-wider shadow-sm">
+        ติดต่อและสมัครเข้าร่วมโครงการ
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-navy-900 tracking-tight leading-tight">
+        ติดต่อเรา <span class="text-gold-500">Contact Us</span>
+      </h1>
+      <p class="text-navy-600 max-w-xl mx-auto text-sm">
+        สอบถามรายละเอียดแคมป์ ข้อสงสัย หรือส่งคำขอสมัครเรียนภาษาที่จีนระยะสั้นได้เลย
+      </p>
+    </div>
+  </section>
+
+  <!-- Overlapping Main Container -->
+  <main class="relative -mt-24 z-30 bg-white rounded-t-[40px] md:rounded-t-[80px] shadow-2xl pb-24 border-t border-sky-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+
+      <div class="max-w-4xl mx-auto space-y-12">
+        
+        <!-- Header Text inside main container -->
+        <div class="text-center space-y-3">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800">
+            ช่องทางการติดต่อของเรา
+          </h2>
+          <p class="text-navy-600">
+            คุณสามารถติดต่อและติดตามข่าวสารของเราได้ผ่านช่องทางต่างๆ ด้านล่างนี้
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Line Add & QR Code card (Spans full width or just first item) -->
+          <div class="md:col-span-2 bg-sky-50/50 border border-sky-100 rounded-3xl p-8 shadow-sm flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1 space-y-4 text-center md:text-left">
+              <h3 class="text-xl font-bold text-navy-800 flex items-center justify-center md:justify-start gap-2">
+                <span class="bg-line/10 text-line rounded-lg p-2">
+                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.564.39.084.922.258 1.057.592.12.301.079.77.038 1.074l-.166 1.002c-.05.303-.234 1.187 1.008.647 1.242-.54 6.702-3.948 9.137-6.762 2.457-2.687 3.89-5.834 3.89-9.919zm-15.006 3.031h-1.494v-4.475h-1.493v-1.493h4.481v1.493h-1.494v-4.475zm3.486 0h-3v-5.968h1.5v4.475h1.5v1.493zm4.237 0h-1.391l-1.921-2.909v2.909h-1.5v-5.968h1.391l1.921 2.909v-2.909h1.5v5.968zm3.277-4.475h-1.5v1.493h1.5v1.493h-1.5v1.493h3v1.493h-4.5v-5.968h4.5v1.493z"/>
+                  </svg>
+                </span>
+                <span>แชทสอบถามทาง LINE Official</span>
+              </h3>
+              <p class="text-navy-600 text-sm leading-relaxed">
+                คลิกปุ่มแอดไลน์ด้านล่างเพื่อพูดคุยรายละเอียดแคมป์และสอบถามข้อมูลได้แบบเรียลไทม์
+              </p>
+              <a [href]="contactInfo?.lineLink" target="_blank" class="inline-flex bg-line hover:bg-line-dark text-white font-bold py-3.5 px-8 rounded-xl items-center justify-center gap-2.5 transition duration-200 shadow-md hover:shadow-lg w-full md:w-auto">
+                <span>เพิ่มเพื่อน LINE ({{ contactInfo?.lineId }})</span>
+              </a>
+            </div>
+            <div class="w-40 h-40 flex-shrink-0 bg-white border border-sky-100 rounded-2xl flex flex-col items-center justify-center p-3 shadow-md relative">
+              <span class="text-4xl mb-1">📱</span>
+              <span class="text-[10px] font-bold text-navy-800">Scan QR Code</span>
+              <span class="text-[9px] text-navy-500 font-mono">{{ contactInfo?.lineId }}</span>
+            </div>
+          </div>
+
+          <!-- Facebook -->
+          <a [href]="contactInfo?.facebookLink" target="_blank" class="bg-white border border-sky-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-sky-300 transition-all flex items-center gap-5 group">
+            <div class="w-14 h-14 bg-[#1877F2]/10 text-[#1877F2] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-navy-400 uppercase tracking-wider mb-1">Facebook Page</p>
+              <h4 class="text-lg font-extrabold text-navy-800 group-hover:text-[#1877F2] transition-colors">{{ contactInfo?.facebookId }}</h4>
+            </div>
+          </a>
+
+          <!-- Instagram -->
+          <a [href]="contactInfo?.igLink" target="_blank" class="bg-white border border-sky-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-pink-300 transition-all flex items-center gap-5 group">
+            <div class="w-14 h-14 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-7 h-7 text-white fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-navy-400 uppercase tracking-wider mb-1">Instagram</p>
+              <h4 class="text-lg font-extrabold text-navy-800 group-hover:text-[#bc1888] transition-colors">&#64;{{ contactInfo?.igId }}</h4>
+            </div>
+          </a>
+
+          <!-- TikTok -->
+          <a [href]="contactInfo?.tiktokLink" target="_blank" class="bg-white border border-sky-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-black transition-all flex items-center gap-5 group">
+            <div class="w-14 h-14 bg-black/5 text-black rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+              <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.71 4.1 1.12 1.09 2.65 1.66 4.19 1.75v3.9c-1.51-.04-3-.56-4.19-1.5-.23-.2-.45-.42-.65-.67-.06 1.78-.04 3.57-.05 5.35-.07 2.31-.79 4.62-2.17 6.47-1.72 2.27-4.5 3.73-7.34 3.7-3.42.06-6.73-1.89-8.4-4.89-1.87-3.3-1.63-7.69.6-10.74 1.95-2.74 5.33-4.22 8.68-3.79V7.9c-1.78-.36-3.7.13-5.02 1.34-1.39 1.23-2.07 3.25-1.72 5.09.3 1.69 1.53 3.16 3.16 3.7 1.83.67 4-.02 4.96-1.65.65-1.07.82-2.36.8-3.61.02-4.23.01-8.47.02-12.7z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-navy-400 uppercase tracking-wider mb-1">TikTok</p>
+              <h4 class="text-lg font-extrabold text-navy-800 group-hover:text-black transition-colors">&#64;chinesebyme</h4>
+            </div>
+          </a>
+
+          <!-- X (Twitter) -->
+          <a [href]="contactInfo?.xLink" target="_blank" class="bg-white border border-sky-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-black transition-all flex items-center gap-5 group">
+            <div class="w-14 h-14 bg-black/5 text-black rounded-full flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-navy-400 uppercase tracking-wider mb-1">X (Twitter)</p>
+              <h4 class="text-lg font-extrabold text-navy-800 group-hover:text-black transition-colors">&#64;chinese_byme</h4>
+            </div>
+          </a>
+
+          <!-- Email -->
+          <a [href]="'mailto:' + contactInfo?.email" class="bg-white border border-sky-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-navy-300 transition-all flex items-center gap-5 group">
+            <div class="w-14 h-14 bg-navy-50 text-navy-600 rounded-full flex items-center justify-center group-hover:bg-navy-600 group-hover:text-white transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-navy-400 uppercase tracking-wider mb-1">Email</p>
+              <h4 class="text-base sm:text-lg font-extrabold text-navy-800 group-hover:text-navy-600 transition-colors font-mono">{{ contactInfo?.email }}</h4>
+            </div>
+          </a>
+
+          <!-- Phone -->
+          <a [href]="'tel:' + contactInfo?.phone" class="bg-white border border-sky-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-green-300 transition-all flex items-center gap-5 group">
+            <div class="w-14 h-14 bg-green-50 text-green-600 rounded-full flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-navy-400 uppercase tracking-wider mb-1">Phone</p>
+              <h4 class="text-lg font-extrabold text-navy-800 group-hover:text-green-600 transition-colors">{{ contactInfo?.phone }}</h4>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>

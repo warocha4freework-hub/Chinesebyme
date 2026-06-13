@@ -1,0 +1,156 @@
+<div class="fade-in">
+  
+  <!-- Banner Section (Replicating Image 2 top blue banner) -->
+  <section class="relative pt-32 pb-44 bg-cover bg-center text-center overflow-hidden min-h-[600px] md:min-h-[750px] flex items-center" style="background-image: url('/assets/images/Quote%20Section.png');">
+    <div class="absolute inset-0 bg-black/40 z-0"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-wide leading-snug drop-shadow-lg space-y-4">
+        <span class="text-white block">มากกว่าความรู้ คือ</span>
+        <span class="block mt-2"><span class="text-gold-500">มิตรภาพ</span> <span class="text-white">และ</span> <span class="text-gold-500">ประสบการณ์ดีๆ</span></span>
+      </h1>
+      <p class="text-white/80 font-medium text-base tracking-widest uppercase">
+        — ทีมงาน ChineseByMe
+      </p>
+    </div>
+  </section>
+
+  <!-- Overlapping Main Container -->
+  <main class="relative -mt-24 z-30 bg-white rounded-t-[40px] md:rounded-t-[80px] shadow-2xl pb-24 border-t border-sky-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+
+      <!-- Section Title: รีวิวความประทับใจ -->
+      <section class="text-center space-y-3 mb-16">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800">
+          รีวิวความประทับใจ <span class="text-gold-500">จาก น้องๆที่ร่วมเดินทางกับเรา</span>
+        </h2>
+        <div class="w-24 h-1 bg-gold-400 mx-auto rounded-full mt-3"></div>
+      </section>
+
+      <!-- Grid of Instagram Style Cards -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        @if (isLoading) {
+          @for (x of [1, 2, 3]; track x) {
+            <div class="animate-pulse bg-sky-50 h-96 rounded-3xl"></div>
+          }
+        } @else {
+          @for (rev of reviews; track rev.id) {
+            <!-- Instagram Style Post Card -->
+            <div class="bg-white border border-sky-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+              
+              <!-- Post Author Header -->
+              <div class="p-4 flex items-center gap-3 border-b border-sky-50">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gold-500 to-orange-500 p-0.5">
+                  <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-bold text-navy-800 text-xs select-none">
+                    {{ rev.author.substring(3, 5) || 'CN' }}
+                  </div>
+                </div>
+                <div>
+                  <p class="font-bold text-xs text-navy-800">{{ rev.author }}</p>
+                  <p class="text-[10px] text-navy-500">{{ rev.program }}</p>
+                </div>
+              </div>
+
+              <!-- Post Media space -->
+              <div class="h-80 bg-gradient-to-br from-sky-100 to-navy-50 flex flex-col justify-between p-6 relative select-none border-b border-sky-50">
+                <span class="absolute top-4 right-4 bg-navy-800/80 backdrop-blur-sm text-[10px] text-white font-bold px-2 py-1 rounded">
+                  1/1
+                </span>
+                
+                <!-- Mock Group Photo layout -->
+                <div class="w-full h-full flex flex-col items-center justify-center text-center space-y-3">
+                  <span class="text-3xl">✈️</span>
+                  <p class="text-xs font-bold text-navy-800">แคมป์ศึกษาต่อต้าเหลียน</p>
+                  <p class="text-[10px] text-navy-500">Dongbei University of Finance and Economics</p>
+                </div>
+              </div>
+
+              <!-- Post Actions & Text -->
+              <div class="p-5 space-y-3 text-xs">
+                <!-- Action Icons (Like, Comment, Share) -->
+                <div class="flex items-center gap-4 text-navy-600 border-b border-navy-50 pb-3">
+                  <span class="flex items-center gap-1 cursor-pointer hover:text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    <span>124</span>
+                  </span>
+                  <span class="flex items-center gap-1 cursor-pointer hover:text-gold-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <span>18</span>
+                  </span>
+                </div>
+
+                <!-- Comment content -->
+                <p class="leading-relaxed text-navy-700">
+                  <span class="font-bold text-navy-800 mr-1.5">{{ rev.author }}</span>{{ rev.text }}
+                </p>
+              </div>
+
+            </div>
+          }
+        }
+      </section>
+
+      <!-- Large testimonial blockquote (Replicating the quote box in Image 2 center) -->
+      @if (quoteTestimonial) {
+        <section class="bg-sky-50/50 border border-sky-100 rounded-3xl p-8 md:p-12 mb-24 relative">
+          <!-- Quote Icon decoration -->
+          <div class="absolute -top-6 left-10 md:left-14 w-12 h-12 bg-gold-400 text-white rounded-2xl flex items-center justify-center font-serif text-3xl font-bold shadow-lg select-none">
+            “
+          </div>
+          
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-8 mt-2">
+            <!-- Author Avatar -->
+            <div class="flex-shrink-0">
+              <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-gold-400 to-orange-400 p-0.5 shadow-md">
+                <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-bold text-navy-800 text-lg select-none">
+                  NN
+                </div>
+              </div>
+            </div>
+
+            <!-- Quote Text -->
+            <div class="space-y-4 text-center md:text-left">
+              <blockquote class="text-base sm:text-lg font-medium text-navy-800 leading-relaxed">
+                {{ quoteTestimonial.text }}
+              </blockquote>
+              <div class="pt-2">
+                <cite class="not-italic font-bold text-sm text-navy-800 block">{{ quoteTestimonial.author }}</cite>
+                <span class="text-xs text-navy-500">{{ quoteTestimonial.role }}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
+      <!-- Section: ภาพความทรงจำระหว่างอยู่ที่จีน (Memory grid) -->
+      <section class="space-y-12">
+        <div class="text-center space-y-3 mb-10">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800">
+            ภาพความทรงจำระหว่างอยู่ที่จีน
+          </h2>
+          <div class="w-20 h-1 bg-gold-400 mx-auto rounded-full mt-3"></div>
+        </div>
+
+        <!-- 9 Photo Grid matching design -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          @for (photo of memories; track photo.id) {
+            <div class="bg-white border border-sky-100 rounded-3xl overflow-hidden shadow-md group hover:shadow-xl transition-all duration-200">
+              <!-- Visual Mock Photo -->
+              <div class="h-64 bg-gradient-to-br from-sky-100 to-navy-50 flex items-center justify-center p-6 relative group-hover:scale-105 transition-transform duration-200 select-none">
+                <!-- Icon and Label inside mock photo -->
+                <div class="text-center space-y-2">
+                  <span class="inline-block bg-white/90 text-navy-800 rounded-full p-2.5 shadow-sm text-xl">📸</span>
+                  <p class="text-xs font-bold text-navy-800">{{ photo.caption }}</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>

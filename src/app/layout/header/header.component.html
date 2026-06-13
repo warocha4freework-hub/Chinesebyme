@@ -1,0 +1,140 @@
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 "
+        [ngClass]="{
+          'bg-[#063773] shadow-lg py-4 text-white': isScrolled,
+          'bg-transparent py-5 text-white': !isScrolled
+        }">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      <!-- Brand Logo Pill -->
+      <a routerLink="/" class="flex items-center" (click)="closeMenu()">
+        <img src="/assets/images/LOGO.png" alt="Chinese By Me" class="h-12 md:h-14 object-contain">
+      </a>
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex space-x-10 items-center">
+        @for (item of navItems; track item.label) {
+          @if (item.subItems) {
+            <!-- Dropdown Menu -->
+            <div class="relative group py-2">
+              <button class="group hover:text-gold-500 transition-colors duration-200 text-[15px] font-medium flex items-center gap-1"
+                      [ngClass]="{'text-white': !isScrolled || isScrolled}"> <!-- Keep it white or inherited based on header state -->
+                {{ item.label }}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+              
+              <!-- Dropdown Panel Wrapper (to bridge hover gap) -->
+              <div class="absolute left-0 pt-4 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top group-hover:translate-y-0 translate-y-2 z-50">
+                <!-- Dropdown Box -->
+                <div class="bg-white shadow-xl flex flex-col">
+                  @for (sub of item.subItems; track sub.route) {
+                    <a [routerLink]="sub.route" class="block px-5 py-3.5 text-left text-[15px] text-navy-800 font-medium hover:bg-[#063773] hover:text-gold-500 transition-colors duration-150">
+                      {{ sub.label }}
+                    </a>
+                  }
+                </div>
+              </div>
+            </div>
+          } @else {
+            <a [routerLink]="item.route"
+               routerLinkActive="active"
+               #rla="routerLinkActive"
+               [routerLinkActiveOptions]="{exact: item.route === '/'}"
+               class="group hover:text-gold-500 transition-colors duration-200 relative py-2 text-[15px]"
+               [ngClass]="{'text-gold-500 font-bold': rla.isActive, 'text-white font-medium': !rla.isActive}">
+              {{ item.label }}
+              <!-- Active Underline indicator -->
+              <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-[3px] bg-gold-500 rounded-full transition-opacity duration-200"
+                    [ngClass]="{'opacity-100': rla.isActive, 'opacity-0': !rla.isActive}"></span>
+            </a>
+          }
+        }
+      </nav>
+
+      <!-- CTA Register Button (Desktop) -->
+      <div class="hidden md:flex">
+        <a routerLink="/contact" 
+           [queryParams]="{enroll: 'true'}"
+           class="px-6 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg"
+           [ngClass]="{
+             'bg-gold-500 hover:bg-gold-400 text-white': isScrolled,
+             'bg-[#194b83] hover:bg-[#12365e] text-white': !isScrolled
+           }">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          </svg>
+          <span>สมัครเรียนเลย</span>
+        </a>
+      </div>
+
+      <!-- Hamburger Menu Button (Mobile) -->
+      <div class="md:hidden flex items-center">
+        <button (click)="toggleMenu()" type="button" class="text-white hover:text-gold-300 focus:outline-none p-2" aria-controls="mobile-menu" [attr.aria-expanded]="isMenuOpen">
+          <span class="sr-only">Open main menu</span>
+          @if (!isMenuOpen) {
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          } @else {
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          }
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="md:hidden bg-navy-950/95 backdrop-blur-lg border-b border-navy-800 transition-all duration-300" id="mobile-menu">
+    <div class="px-4 pt-2 pb-6 space-y-3">
+      @for (item of navItems; track item.label) {
+        @if (item.subItems) {
+          <div class="space-y-1">
+            <div class="px-4 py-2 text-white/60 text-sm font-bold tracking-wider">
+              {{ item.label }}
+            </div>
+            @for (sub of item.subItems; track sub.route) {
+              <a [routerLink]="sub.route"
+                 (click)="closeMenu()"
+                 routerLinkActive="bg-navy-800 text-gold-400 font-semibold"
+                 class="block px-8 py-2.5 rounded-lg text-white/90 hover:bg-navy-800 hover:text-gold-300 text-[15px] font-medium transition-all duration-150">
+                - {{ sub.label }}
+              </a>
+            }
+          </div>
+        } @else {
+          <a [routerLink]="item.route"
+             (click)="closeMenu()"
+             routerLinkActive="bg-navy-800 text-gold-400 font-semibold"
+             [routerLinkActiveOptions]="{exact: item.route === '/'}"
+             class="block px-4 py-2.5 rounded-lg text-white hover:bg-navy-800 hover:text-gold-300 text-base font-medium transition-all duration-150">
+            {{ item.label }}
+          </a>
+        }
+      }
+      <div class="pt-4 border-t border-navy-800 px-4">
+        <a routerLink="/contact"
+           [queryParams]="{enroll: 'true'}"
+           (click)="closeMenu()"
+           class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-lg transition-all duration-150">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5 8.084V13a1 1 0 00.553.894l4.5 2.25a1 1 0 00.894 0l4.5-2.25A1 1 0 0016 13V8.084l2.394-.964a1 1 0 000-1.84l-7-3zM14 13.118l-3.5 1.75-3.5-1.75V9.38l3.5 1.5 3.5-1.5v3.738z" />
+          </svg>
+          <span>สมัครเรียนเลย</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Custom rule to highlight active link in navigation */
+  .active-link {
+    color: var(--color-brand-primary) !important;
+    font-weight: 600;
+  }
+  .active-link .active-indicator {
+    transform: scale-x(1) !important;
+  }
+</style>

@@ -1,0 +1,369 @@
+<div class="fade-in">
+  
+  <!-- Hero Slider Container -->
+  <div class="relative w-full min-h-[750px] overflow-hidden group">
+    
+    <!-- Navigation Arrows -->
+    <button (click)="prevSlideManual()" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/50 hover:bg-white text-navy-900 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button (click)="nextSlideManual()" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/50 hover:bg-white text-navy-900 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <!-- Hero Background Layers -->
+    @for (bg of heroImages; track bg; let i = $index) {
+      <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out"
+           [ngClass]="{'opacity-100 z-10': currentSlide === i, 'opacity-0 z-0 pointer-events-none': currentSlide !== i}"
+           [style.background-image]="'url(' + bg + ')'">
+      </div>
+    }
+
+    <!-- Hero Content Overlay (Shared) -->
+    <section class="absolute inset-0 pt-32 pb-48 md:pb-64 min-h-[750px] z-20 pointer-events-none flex flex-col justify-center bg-black/30 md:bg-black/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pointer-events-auto">
+        <div class="flex grid-cols-1 lg:grid-cols-12 gap-12 items-center justify-center">
+          
+          <div class="lg:col-span-7 space-y-6 lg:text-center mt-8 lg:mt-0 p-4 md:p-0 rounded-2xl">
+            <span class="inline-block bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold text-navy-800 tracking-wider shadow-sm">
+              🇨🇳 โครงการศึกษาต่อประเทศจีน 2026
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+              CHINESE <span class="text-gold-400 md:text-gold-500">CAMP</span>
+            </h1>
+            <p class="text-xl sm:text-2xl font-bold text-white leading-snug drop-shadow-md">
+              แคมป์เรียนภาษาจีนและวัฒนธรรมที่ต้าเหลียน
+            </p>
+            
+            <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/60 shadow-md max-w-xl mx-auto lg:mx-0 space-y-3.5 text-left">
+              <div class="flex items-start gap-3">
+                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <div>
+                  <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 1</p>
+                  <p class="text-sm sm:text-base font-semibold text-navy-800">ตุลาคม : 11 – 24 ตุลาคม 2026 <span class="text-xs text-navy-500 font-normal">(2 สัปดาห์)</span></p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3 border-t border-navy-100/50 pt-3.5">
+                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <div>
+                  <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 2</p>
+                  <p class="text-sm sm:text-base font-semibold text-navy-800">ธันวาคม : 6 – 19 ธันวาคม 2026 <span class="text-xs text-navy-500 font-normal">(2 สัปดาห์)</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+              <a routerLink="/contact" [queryParams]="{enroll: 'true'}" class="w-full sm:w-auto bg-navy-800 hover:bg-navy-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-center">
+                สมัครเรียนเลย
+              </a>
+              <a routerLink="/study-in-china" class="w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 text-center">
+                รายละเอียดเพิ่มเติม
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slider Navigation Dots -->
+    <div class="absolute bottom-32 md:bottom-40 left-0 right-0 z-30 flex justify-center gap-3">
+      @for (bg of heroImages; track bg; let dot = $index) {
+        <button (click)="setSlide(dot)" [ngClass]="currentSlide === dot ? 'bg-gold-500 w-8' : 'bg-white/70 hover:bg-white w-3'" class="h-3 rounded-full shadow-md transition-all duration-300"></button>
+      }
+    </div>
+  </div>
+
+  <!-- Overlapping Container Content (Start of the page body) -->
+  <main class="relative -mt-24 md:-mt-32 z-30 bg-white rounded-t-[40px] md:rounded-t-[80px] shadow-2xl border-t border-sky-100 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+      
+      <!-- Section: เรียนภาษาที่จีน ระยะสั้น -->
+      <section class="text-center space-y-4">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800">
+          เรียนภาษาที่จีน <span class="text-gold-500">“ระยะสั้น”</span>
+        </h2>
+        <p class="text-navy-600 font-semibold text-lg max-w-2xl mx-auto">
+          มหาวิทยาลัย Dongbei University of Finance and Economics
+        </p>
+        
+        <!-- Location Badge -->
+        <div class="inline-block bg-navy-800 text-white font-bold px-6 py-2 rounded-full text-sm shadow-md mt-2">
+          ต้าเหลียน (DALIAN) ประเทศจีน
+        </div>
+
+        <!-- 3 Camp Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-left">
+          
+          @if (isLoading) {
+            <!-- Loading state cards -->
+            @for (x of [1, 2, 3]; track x) {
+              <div class="animate-pulse bg-sky-50 h-80 rounded-3xl border border-sky-100"></div>
+            }
+          } @else {
+            @for (camp of camps; track camp.id) {
+              <!-- Summer Camp Card (Closed) -->
+              @if (camp.status === 'closed') {
+                <div class="bg-white border border-gray-200 rounded-2xl flex flex-col justify-between opacity-80 relative overflow-hidden shadow-sm">
+                  <div class="relative">
+                    <!-- Summer Camp Image -->
+                    <div class="h-44 w-full bg-gray-200">
+                      <img src="/assets/images/Summer.png" alt="Summer Camp" class="w-full h-full object-cover grayscale opacity-80">
+                    </div>
+                    <!-- Season Tag -->
+                    <div class="absolute top-0 left-0 bg-[#FBB040] text-white px-4 py-2.5 rounded-br-2xl flex items-center gap-2 shadow-sm">
+                      <img src="/assets/images/Sun.png" alt="Sun icon" class="w-4 h-4 object-contain brightness-0 invert">
+                      <span class="text-xs font-bold uppercase tracking-wider">SUMMER CAMP</span>
+                    </div>
+                  </div>
+                  
+                  <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-700 mb-2">รอบมิถุนายน</h3>
+                    <div class="space-y-1 text-sm text-gray-500 mb-6">
+                      <p>ระหว่าง วันที่ -</p>
+                    </div>
+
+                    <div class="mt-auto space-y-4">
+                      <div class="flex items-center gap-2 py-2.5 px-3 rounded-lg bg-gray-100 text-gray-400 font-medium text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>ปิดรับสมัครแล้ว</span>
+                      </div>
+                      <div class="grid grid-cols-2 gap-3">
+                        <button disabled class="py-2.5 rounded-lg border border-[#FBB040]/50 text-[#FBB040] text-xs font-bold text-center bg-transparent flex items-center justify-center gap-1.5 opacity-60">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                          ตารางเรียน
+                        </button>
+                        <button disabled class="py-2.5 rounded-lg bg-[#FBB040] text-white text-xs font-bold text-center flex items-center justify-center gap-1.5 opacity-60">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /></svg>
+                          สมัครเรียนเลย
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- Autumn Camp Card (Open) -->
+              @if (camp.type === 'autumn') {
+                <div class="bg-white border border-sky-100 rounded-2xl flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
+                  <div class="relative">
+                    <!-- Autumn Camp Image -->
+                    <div class="h-44 w-full overflow-hidden">
+                      <img src="/assets/images/Autumn.png" alt="Autumn Camp" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <!-- Season Tag -->
+                    <div class="absolute top-0 left-0 bg-[#E75A3D] text-white px-4 py-2.5 rounded-br-2xl flex items-center gap-2 shadow-md z-10">
+                      <img src="/assets/images/maple.png" alt="Maple icon" class="w-4 h-4 object-contain brightness-0 invert">
+                      <span class="text-xs font-bold uppercase tracking-wider">AUTUMN CAMP</span>
+                    </div>
+                  </div>
+                  
+                  <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-navy-900 mb-2">รอบตุลาคม | ระยะ 2 สัปดาห์</h3>
+                    <div class="space-y-1 text-sm text-navy-700 mb-6">
+                      <p>ระหว่าง วันที่ 11 – 24 ตุลาคม 2026</p>
+                    </div>
+
+                    <div class="mt-auto space-y-4">
+                      <div class="flex items-center gap-2 py-2.5 px-3 rounded-lg bg-[#E75A3D]/10 text-[#E75A3D] font-medium text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>เปิดรับสมัคร วันนี้ – 31 ก.ค. 2026</span>
+                      </div>
+                      <div class="grid grid-cols-2 gap-3">
+                        <a routerLink="/study-in-china" class="py-2.5 rounded-lg border border-[#E75A3D] text-[#E75A3D] text-xs font-bold text-center hover:bg-[#E75A3D]/5 transition duration-150 flex items-center justify-center gap-1.5">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                          ตารางเรียน
+                        </a>
+                        <a routerLink="/contact" [queryParams]="{camp: camp.id}" class="py-2.5 rounded-lg bg-[#E75A3D] hover:bg-[#D6492C] text-white text-xs font-bold text-center shadow-sm hover:shadow transition duration-150 flex items-center justify-center gap-1.5">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /></svg>
+                          สมัครเรียนเลย
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- Winter Camp Card (Open) -->
+              @if (camp.type === 'winter') {
+                <div class="bg-white border border-sky-100 rounded-2xl flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
+                  <div class="relative">
+                    <!-- Winter Camp Image -->
+                    <div class="h-44 w-full overflow-hidden">
+                      <img src="/assets/images/Winter.png" alt="Winter Camp" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <!-- Season Tag -->
+                    <div class="absolute top-0 left-0 bg-[#00A3FF] text-white px-4 py-2.5 rounded-br-2xl flex items-center gap-2 shadow-md z-10">
+                      <img src="/assets/images/snowflake.png" alt="Snowflake icon" class="w-4 h-4 object-contain brightness-0 invert">
+                      <span class="text-xs font-bold uppercase tracking-wider">WINTER CAMP</span>
+                    </div>
+                  </div>
+                  
+                  <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-navy-900 mb-2">รอบธันวาคม | ระยะ 2 สัปดาห์</h3>
+                    <div class="space-y-1 text-sm text-navy-700 mb-6">
+                      <p>ระหว่าง วันที่ 06 – 19 ธันวาคม 2026</p>
+                    </div>
+
+                    <div class="mt-auto space-y-4">
+                      <div class="flex items-center gap-2 py-2.5 px-3 rounded-lg bg-[#00A3FF]/10 text-[#00A3FF] font-medium text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>เปิดรับสมัคร วันนี้ – 30 ก.ย. 2026</span>
+                      </div>
+                      <div class="grid grid-cols-2 gap-3">
+                        <a routerLink="/study-in-china" class="py-2.5 rounded-lg border border-[#00A3FF] text-[#00A3FF] text-xs font-bold text-center hover:bg-[#00A3FF]/5 transition duration-150 flex items-center justify-center gap-1.5">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                          ตารางเรียน
+                        </a>
+                        <a routerLink="/contact" [queryParams]="{camp: camp.id}" class="py-2.5 rounded-lg bg-[#00A3FF] hover:bg-[#0090E6] text-white text-xs font-bold text-center shadow-sm hover:shadow transition duration-150 flex items-center justify-center gap-1.5">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /></svg>
+                          สมัครเรียนเลย
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+
+            }
+          }
+
+        </div>
+      </section>
+
+
+    </div> <!-- Close inner max-w-7xl container to allow full width sections -->
+
+    <!-- Section: Core Value Blue Banner (Replicating Image 2 / Image 3 center banner) -->
+    <section class="w-full relative min-h-[600px] lg:min-h-[750px] py-20 flex flex-col justify-center bg-cover bg-center" style="background-image: url('/assets/images/Quote%20Section.png');">
+      <!-- Optional overlay if needed to make text pop -->
+      <div class="absolute inset-0 bg-black/10 z-0"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center space-y-6">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-wide leading-snug drop-shadow-lg space-y-4">
+          <span class="text-white block">มากกว่าความรู้ คือ</span>
+          <span class="block mt-2"><span class="text-gold-500">มิตรภาพ</span> <span class="text-white">และ</span> <span class="text-gold-500">ประสบการณ์ดีๆ</span></span>
+        </h2>
+        <p class="text-white/80 font-medium text-lg tracking-widest uppercase">
+          — ทีมงาน ChineseByMe
+        </p>
+      </div>
+    </section>
+
+    <!-- Section: News Cards (เดินทางไปเรียนจีน อย่างสบายใจ & ลงวารสารของมหาวิทยาลัยที่จีน) -->
+    <section class="w-full relative min-h-[600px] lg:min-h-[750px] py-20 flex flex-col justify-center bg-cover bg-center" style="background-image: url('/assets/images/Additional%20Section.png');">
+      <!-- Optional light overlay to ensure text readability if image is busy -->
+      <div class="absolute inset-0 bg-white/20 z-0"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 space-y-12">
+        <div class="text-center lg:text-left border-b border-navy-100 pb-4 flex flex-col sm:flex-row items-center justify-between">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800">
+            ข่าวสารและบทความล่าสุด
+          </h2>
+          <p class="text-navy-500 text-sm mt-1 sm:mt-0">
+            อัปเดตบรรยากาศกิจกรรมและความเคลื่อนไหวของโครงการ
+          </p>
+        </div>
+
+        <!-- News Carousel -->
+        <div class="relative w-full group py-4">
+          
+          @if (pagedNewsCards.length > 1) {
+            <!-- Navigation Arrows -->
+            <!-- Position arrows inside the container by using positive inset values so they are not clipped -->
+            <button (click)="prevNews()" class="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white hover:bg-sky-50 text-navy-900 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block border border-sky-100">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button (click)="nextNews()" class="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white hover:bg-sky-50 text-navy-900 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block border border-sky-100">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          }
+
+          <!-- Slides Wrapper with Overflow Hidden -->
+          <div class="overflow-hidden w-full pb-4">
+            <!-- Slides Container -->
+            <div class="flex transition-transform duration-500 ease-in-out"
+                 [style.transform]="'translateX(-' + (currentNewsPage * 100) + '%)'">
+              
+              @for (page of pagedNewsCards; track $index) {
+                <!-- Changed gap-8 to gap-6 for 24px gap -->
+                <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-6 px-1 md:px-4">
+                  
+                  @for (card of page; track card.title) {
+                    <div class="bg-white border border-sky-100 rounded-3xl overflow-hidden shadow-md transition-all duration-300 flex flex-col h-full">
+                      <!-- Image Area -->
+                      <div class="h-64 overflow-hidden relative">
+                        @if (card.emoji) {
+                          <div class="w-full h-full bg-navy-100 flex items-center justify-center">
+                            <span class="text-4xl">{{ card.emoji }}</span>
+                          </div>
+                        } @else {
+                          <img [src]="card.image" [alt]="card.title" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        }
+                      </div>
+
+                      <!-- Content Area -->
+                      <div class="p-8 flex-grow flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                          <h3 class="text-xl font-bold text-navy-800 hover:text-gold-500 transition duration-150">
+                            {{ card.title }}
+                          </h3>
+                          <p class="text-navy-600 text-sm leading-relaxed">
+                            {{ card.desc }}
+                          </p>
+                        </div>
+                        <a [routerLink]="card.link" class="inline-flex items-center gap-1.5 text-navy-800 hover:text-gold-500 font-bold text-sm group self-start">
+                          <span>{{ card.iconText }}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  }
+
+                </div>
+              }
+            </div>
+          </div>
+
+          @if (pagedNewsCards.length > 1) {
+            <!-- Pagination Dots -->
+            <div class="flex justify-center gap-3 mt-8 z-30">
+              @for (page of pagedNewsCards; track $index; let i = $index) {
+                <button (click)="setNewsPage(i)" 
+                        class="w-3 h-3 rounded-full transition-all duration-300"
+                        [ngClass]="currentNewsPage === i ? 'bg-navy-800 scale-125' : 'bg-navy-300/50 hover:bg-navy-400'">
+                </button>
+              }
+            </div>
+          }
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>

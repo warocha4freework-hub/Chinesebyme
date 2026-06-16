@@ -6,12 +6,12 @@
     <!-- Navigation Arrows -->
     <button (click)="prevSlideManual()" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/50 hover:bg-white text-navy-900 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
     </button>
     <button (click)="nextSlideManual()" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/50 hover:bg-white text-navy-900 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </button>
 
@@ -40,11 +40,9 @@
             </p>
             
             <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/60 shadow-md max-w-xl mx-auto lg:mx-0 space-y-3.5 text-left">
-              <div class="flex items-start gap-3">
-                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+              <div class="flex align-middle items-center gap-3">
+                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5 w-11 h-11 flex justify-center">
+                  <i class="text-2xl ph ph-calendar-blank yellow-color items-center flex"></i>
                 </span>
                 <div>
                   <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 1</p>
@@ -52,11 +50,9 @@
                 </div>
               </div>
               
-              <div class="flex items-start gap-3 border-t border-navy-100/50 pt-3.5">
-                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+              <div class="flex items-center gap-3 border-t border-navy-100/50 pt-3.5">
+                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5 w-11 h-11 flex justify-center">
+                  <i class="text-2xl ph ph-calendar-blank yellow-color items-center flex"></i>
                 </span>
                 <div>
                   <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 2</p>
@@ -66,10 +62,12 @@
             </div>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-              <a routerLink="/contact" [queryParams]="{enroll: 'true'}" class="w-full sm:w-auto bg-navy-800 hover:bg-navy-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-center">
+              <a routerLink="/contact" [queryParams]="{enroll: 'true'}" class="flex w-full sm:w-auto bg-navy-800 hover:bg-navy-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-center">
+                <i class="text-2xl ph ph-student mr-2"></i>
                 สมัครเรียนเลย
               </a>
-              <a routerLink="/study-in-china" class="w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 text-center">
+              <a routerLink="/study-in-china" class="flex w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 text-center">
+                <i class="text-2xl ph ph-file-text mr-2"></i>
                 รายละเอียดเพิ่มเติม
               </a>
             </div>
@@ -91,18 +89,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
       
       <!-- Section: เรียนภาษาที่จีน ระยะสั้น -->
-      <section class="text-center space-y-4">
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800">
+      <section class="text-center mb-10">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 lg:mb-2">
           เรียนภาษาที่จีน <span class="text-gold-500">“ระยะสั้น”</span>
         </h2>
-        <p class="text-navy-600 font-semibold text-lg max-w-2xl mx-auto">
-          มหาวิทยาลัย Dongbei University of Finance and Economics
-        </p>
-        
-        <!-- Location Badge -->
-        <div class="inline-block bg-navy-800 text-white font-bold px-6 py-2 rounded-full text-sm shadow-md mt-2">
-          ต้าเหลียน (DALIAN) ประเทศจีน
+        <div class="lg:flex lg:items-center justify-center mb-6">
+          <p class="text-navy-600 font-semibold text-lg mr-2">
+            มหาวิทยาลัย Dongbei University of Finance and Economics
+          </p>
+          <!-- Location Badge -->
+            <div class="inline-block bg-navy-800 text-white font-bold px-6 py-2 rounded-full text-sm">
+              ต้าเหลียน (DALIAN) ประเทศจีน
+            </div>
         </div>
+        
 
         <!-- 3 Camp Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-left">
@@ -274,14 +274,9 @@
       <div class="absolute inset-0 bg-white/20 z-0"></div>
       
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 space-y-12">
-        <div class="text-center lg:text-left border-b border-navy-100 pb-4 flex flex-col sm:flex-row items-center justify-between">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800">
+          <h2 class="text-center text-2xl sm:text-3xl font-extrabold text-navy-800">
             ข่าวสารและบทความล่าสุด
           </h2>
-          <p class="text-navy-500 text-sm mt-1 sm:mt-0">
-            อัปเดตบรรยากาศกิจกรรมและความเคลื่อนไหวของโครงการ
-          </p>
-        </div>
 
         <!-- News Carousel -->
         <div class="relative w-full group py-4">

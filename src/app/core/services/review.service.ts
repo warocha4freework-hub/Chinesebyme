@@ -54,13 +54,13 @@ export class ReviewService {
   ];
 
   private memories: MemoryPhoto[] = [
-    { id: 'mem-1', imageUrl: '/assets/images/photo/1-1.png', caption: '' },
-    { id: 'mem-2', imageUrl: '/assets/images/photo/12.png', caption: '' },
-    { id: 'mem-3', imageUrl: '/assets/images/photo/20.png', caption: '' },
-    { id: 'mem-4', imageUrl: '/assets/images/photo/27.png', caption: '' },
-    { id: 'mem-5', imageUrl: '/assets/images/photo/47.png', caption: '' },
-    { id: 'mem-6', imageUrl: '/assets/images/photo/img_0507.jpg', caption: '' },
-    { id: 'mem-7', imageUrl: '/assets/images/photo/img_0510.jpg', caption: '' }
+    { id: 'mem-1', imageUrl: '/assets/images/photo/1.png', caption: '' },
+    { id: 'mem-2', imageUrl: '/assets/images/photo/2.png', caption: '' },
+    { id: 'mem-3', imageUrl: '/assets/images/photo/3.png', caption: '' },
+    { id: 'mem-4', imageUrl: '/assets/images/photo/4.png', caption: '' },
+    { id: 'mem-5', imageUrl: '/assets/images/photo/5.png', caption: '' },
+    { id: 'mem-6', imageUrl: '/assets/images/photo/6.jpg', caption: '' },
+    { id: 'mem-7', imageUrl: '/assets/images/photo/7.jpg', caption: '' }
   ];
 
   private quoteTestimonial = null;

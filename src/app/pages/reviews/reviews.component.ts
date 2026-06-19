@@ -14,6 +14,8 @@ import { StudentReview, MemoryPhoto } from '../../core/models/review.model';
 export class ReviewsComponent implements OnInit {
   reviews: StudentReview[] = [];
   memories: MemoryPhoto[] = [];
+  pagedMemories: MemoryPhoto[][] = [];
+  currentMemoryPage = 0;
   quoteTestimonial?: any;
   isLoading = true;
 
@@ -21,10 +23,36 @@ export class ReviewsComponent implements OnInit {
 
   ngOnInit() {
     this.reviewService.getReviews().subscribe(data => this.reviews = data);
-    this.reviewService.getMemories().subscribe(data => this.memories = data);
+    this.reviewService.getMemories().subscribe(data => {
+      this.memories = data;
+      this.pagedMemories = [];
+      for (let i = 0; i < this.memories.length; i += 3) {
+        this.pagedMemories.push(this.memories.slice(i, i + 3));
+      }
+    });
     this.reviewService.getQuoteTestimonial().subscribe(data => {
       this.quoteTestimonial = data;
       this.isLoading = false;
     });
+  }
+
+  nextMemoryPage() {
+    if (this.currentMemoryPage < this.pagedMemories.length - 1) {
+      this.currentMemoryPage++;
+    } else {
+      this.currentMemoryPage = 0;
+    }
+  }
+
+  prevMemoryPage() {
+    if (this.currentMemoryPage > 0) {
+      this.currentMemoryPage--;
+    } else {
+      this.currentMemoryPage = this.pagedMemories.length - 1;
+    }
+  }
+
+  goToMemoryPage(index: number) {
+    this.currentMemoryPage = index;
   }
 }

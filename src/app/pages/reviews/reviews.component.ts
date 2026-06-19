@@ -22,6 +22,7 @@ export class ReviewsComponent implements OnInit {
   currentMemoryPage = 0;
   quoteTestimonial?: any;
   isLoading = true;
+  selectedImage: string | null = null;
 
   constructor(private reviewService: ReviewService) {}
 
@@ -88,5 +89,13 @@ export class ReviewsComponent implements OnInit {
 
   toggleReview(id: string) {
     this.expandedReviews[id] = !this.expandedReviews[id];
+  }
+
+  openImage(url: string) {
+    this.selectedImage = url;
+  }
+
+  closeImage() {
+    this.selectedImage = null;
   }
 }

@@ -75,7 +75,7 @@
                       </div>
 
                       <!-- Post Media space -->
-                      <div class="w-full h-[400px] relative select-none border-b border-sky-50 overflow-hidden bg-sky-50 flex-shrink-0 cursor-pointer" (click)="rev.images?.length && openImage(rev.images[0])">
+                      <div class="w-full h-[400px] relative select-none border-b border-sky-50 overflow-hidden bg-sky-50 flex-shrink-0 cursor-pointer" (click)="rev.images?.length && openImage($any(rev.images)[0])">
                         @if (rev.images?.length) {
                           <img [src]="rev.images?.[0]" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" alt="Review Photo">
                         }

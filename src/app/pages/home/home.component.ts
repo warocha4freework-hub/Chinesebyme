@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     {
       title: 'ภาพความประทับใจ',
       desc: 'รวมภาพบรรยากาศรอยยิ้ม ความสนุกสนาน และประสบการณ์ที่มีค่าจากน้องๆ นักเรียนที่ร่วมเดินทางไปแคมป์กับเรา',
-      emoji: '📸',
+      image: '/assets/images/photo/1.png',
       link: '/reviews',
       iconText: 'ดูทั้งหมด'
     }

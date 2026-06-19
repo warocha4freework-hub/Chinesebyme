@@ -26,64 +26,113 @@
         <div class="w-24 h-1 bg-gold-400 mx-auto rounded-full mt-3"></div>
       </section>
 
-      <!-- Grid of Instagram Style Cards -->
-      <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <!-- Reviews Carousel -->
+      <section class="relative mb-16">
         @if (isLoading) {
-          @for (x of [1, 2, 3]; track x) {
-            <div class="animate-pulse bg-sky-50 h-96 rounded-3xl"></div>
-          }
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+            @for (x of [1, 2, 3]; track x) {
+              <div class="animate-pulse bg-sky-50 h-96 rounded-3xl"></div>
+            }
+          </div>
         } @else {
-          @for (rev of reviews; track rev.id) {
-            <!-- Instagram Style Post Card -->
-            <div class="bg-white border border-sky-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-              
-              <!-- Post Author Header -->
-              <div class="p-4 flex items-center gap-3 border-b border-sky-50">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center bg-sky-50 text-xl border border-sky-100 shadow-sm select-none">
-                  {{ rev.avatar }}
-                </div>
-                <div>
-                  <p class="font-bold text-xs text-navy-800">{{ rev.author }}</p>
-                  @if (rev.program) {
-                    <p class="text-[10px] text-navy-500">{{ rev.program }}</p>
-                  }
-                </div>
-              </div>
-
-              <!-- Post Media space -->
-              <div class="w-full h-96 relative select-none border-b border-sky-50 overflow-hidden bg-sky-50">
-                <img [src]="rev.images[0]" class="w-full h-full object-cover" alt="Review Photo">
-                <span class="absolute top-4 right-4 bg-navy-800/80 backdrop-blur-sm text-[10px] text-white font-bold px-2 py-1 rounded">
-                  1/1
-                </span>
-              </div>
-
-              <!-- Post Actions & Text -->
-              <div class="p-5 space-y-3 text-xs">
-                <!-- Action Icons (Like, Comment, Share) -->
-                <div class="flex items-center gap-4 text-navy-600 border-b border-navy-50 pb-3">
-                  <span class="flex items-center gap-1 cursor-pointer hover:text-red-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                    <span>124</span>
-                  </span>
-                  <span class="flex items-center gap-1 cursor-pointer hover:text-gold-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                    <span>18</span>
-                  </span>
-                </div>
-
-                <!-- Comment content -->
-                <p class="leading-relaxed text-navy-700 whitespace-pre-line">
-                  <span class="font-bold text-navy-800 mr-1.5">{{ rev.author }}</span>{{ rev.text }}
-                </p>
-              </div>
-
+          <!-- Pagination Arrows for Desktop -->
+          @if (pagedReviews.length > 1) {
+            <div class="hidden md:flex justify-between items-center absolute top-1/2 left-0 right-0 -mt-4 pointer-events-none z-10">
+              <button (click)="prevReviewPage()" class="w-12 h-12 -ml-6 lg:-ml-12 bg-white border border-sky-100 text-navy-800 rounded-full flex items-center justify-center shadow-md hover:bg-gold-500 hover:text-white hover:border-gold-500 transition duration-300 pointer-events-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button (click)="nextReviewPage()" class="w-12 h-12 -mr-6 lg:-mr-12 bg-white border border-sky-100 text-navy-800 rounded-full flex items-center justify-center shadow-md hover:bg-gold-500 hover:text-white hover:border-gold-500 transition duration-300 pointer-events-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           }
+
+          <div class="overflow-hidden pb-10">
+            <div class="flex transition-transform duration-500 ease-in-out"
+                 [style.transform]="'translateX(-' + (currentReviewPage * 100) + '%)'">
+              
+              @for (page of pagedReviews; track $index) {
+                <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                  @for (rev of page; track rev.id) {
+                    <!-- Instagram Style Post Card -->
+                    <div class="bg-white border border-sky-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 flex flex-col">
+                      
+                      <!-- Post Author Header -->
+                      <div class="p-4 flex items-center gap-3 border-b border-sky-50">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-sky-50 text-xl border border-sky-100 shadow-sm select-none">
+                          {{ rev.avatar }}
+                        </div>
+                        <div>
+                          <p class="font-bold text-xs text-navy-800">{{ rev.author }}</p>
+                          @if (rev.program) {
+                            <p class="text-[10px] text-navy-500">{{ rev.program }}</p>
+                          }
+                        </div>
+                      </div>
+
+                      <!-- Post Media space -->
+                      <div class="w-full h-[400px] relative select-none border-b border-sky-50 overflow-hidden bg-sky-50 flex-shrink-0">
+                        <img [src]="rev.images[0]" class="w-full h-full object-cover object-top" alt="Review Photo">
+                        <span class="absolute top-4 right-4 bg-navy-800/80 backdrop-blur-sm text-[10px] text-white font-bold px-2 py-1 rounded">
+                          1/1
+                        </span>
+                      </div>
+
+                      <!-- Post Actions & Text -->
+                      <div class="p-5 flex-grow text-xs flex flex-col">
+                        <!-- Action Icons (Like, Comment, Share) -->
+                        <div class="flex items-center gap-4 text-navy-600 border-b border-navy-50 pb-3 mb-3">
+                          <span class="flex items-center gap-1 cursor-pointer hover:text-red-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                            <span>124</span>
+                          </span>
+                          <span class="flex items-center gap-1 cursor-pointer hover:text-gold-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            <span>18</span>
+                          </span>
+                        </div>
+
+                        <!-- Comment content -->
+                        <div class="leading-relaxed text-navy-700 whitespace-pre-line relative">
+                          <span class="font-bold text-navy-800 mr-1.5">{{ rev.author }}</span>
+                          <span [class.line-clamp-3]="!expandedReviews[rev.id]">{{ rev.text }}</span>
+                          @if (!expandedReviews[rev.id]) {
+                            <button (click)="toggleReview(rev.id)" class="text-gold-500 font-bold text-xs mt-1 hover:underline">
+                              อ่านเพิ่มเติม...
+                            </button>
+                          } @else {
+                            <button (click)="toggleReview(rev.id)" class="text-gold-500 font-bold text-xs mt-1 hover:underline">
+                              ย่อเนื้อหา
+                            </button>
+                          }
+                        </div>
+                      </div>
+
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Dots Pagination -->
+            @if (pagedReviews.length > 1) {
+              <div class="absolute bottom-0 left-0 right-0 flex justify-center gap-2">
+                @for (page of pagedReviews; track $index) {
+                  <button (click)="goToReviewPage($index)" 
+                          class="w-3 h-3 rounded-full transition-colors duration-300"
+                          [ngClass]="currentReviewPage === $index ? 'bg-gold-500' : 'bg-sky-200 hover:bg-sky-300'"></button>
+                }
+              </div>
+            }
+          </div>
         }
       </section>
 

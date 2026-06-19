@@ -13,6 +13,10 @@ import { StudentReview, MemoryPhoto } from '../../core/models/review.model';
 })
 export class ReviewsComponent implements OnInit {
   reviews: StudentReview[] = [];
+  pagedReviews: StudentReview[][] = [];
+  currentReviewPage = 0;
+  expandedReviews: { [id: string]: boolean } = {};
+  
   memories: MemoryPhoto[] = [];
   pagedMemories: MemoryPhoto[][] = [];
   currentMemoryPage = 0;
@@ -22,7 +26,13 @@ export class ReviewsComponent implements OnInit {
   constructor(private reviewService: ReviewService) {}
 
   ngOnInit() {
-    this.reviewService.getReviews().subscribe(data => this.reviews = data);
+    this.reviewService.getReviews().subscribe(data => {
+      this.reviews = data;
+      this.pagedReviews = [];
+      for (let i = 0; i < this.reviews.length; i += 3) {
+        this.pagedReviews.push(this.reviews.slice(i, i + 3));
+      }
+    });
     this.reviewService.getMemories().subscribe(data => {
       this.memories = data;
       this.pagedMemories = [];
@@ -54,5 +64,29 @@ export class ReviewsComponent implements OnInit {
 
   goToMemoryPage(index: number) {
     this.currentMemoryPage = index;
+  }
+
+  nextReviewPage() {
+    if (this.currentReviewPage < this.pagedReviews.length - 1) {
+      this.currentReviewPage++;
+    } else {
+      this.currentReviewPage = 0;
+    }
+  }
+
+  prevReviewPage() {
+    if (this.currentReviewPage > 0) {
+      this.currentReviewPage--;
+    } else {
+      this.currentReviewPage = this.pagedReviews.length - 1;
+    }
+  }
+
+  goToReviewPage(index: number) {
+    this.currentReviewPage = index;
+  }
+
+  toggleReview(id: string) {
+    this.expandedReviews[id] = !this.expandedReviews[id];
   }
 }

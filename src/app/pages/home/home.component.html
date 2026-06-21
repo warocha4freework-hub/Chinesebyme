@@ -372,19 +372,19 @@
     </section>
 
   </main>
+</div>
 
-  <!-- Schedule Popup Modal -->
-  @if (showPopup) {
-    <div class="fixed inset-0 z-[100] p-4 sm:p-6 bg-black/80 backdrop-blur-sm fade-in flex items-center justify-center" (click)="closePopup()">
-      <div class="relative w-auto max-w-5xl bg-white rounded-2xl shadow-2xl p-1 sm:p-2" (click)="$event.stopPropagation()">
-        <!-- Close Button overlapping the corner -->
-        <button (click)="closePopup()" class="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 bg-white text-gray-800 rounded-full hover:bg-gray-200 transition z-[101] shadow-lg flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 border border-gray-200">
-          <i class="ph ph-x text-xl sm:text-2xl font-bold"></i>
-        </button>
-        <div class="overflow-hidden rounded-xl bg-white flex items-center justify-center">
-          <img [src]="popupImage" alt="Schedule" class="block w-full h-auto max-w-full max-h-[85vh] object-contain">
-        </div>
+<!-- Schedule Popup Modal -->
+@if (showPopup) {
+  <div class="fixed inset-0 z-[100] p-4 sm:p-6 bg-black/80 backdrop-blur-sm fade-in flex items-center justify-center" (click)="closePopup()">
+    <div class="relative w-auto max-w-5xl bg-white rounded-2xl shadow-2xl p-1 sm:p-2" (click)="$event.stopPropagation()">
+      <!-- Close Button overlapping the corner -->
+      <button (click)="closePopup()" class="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 bg-white text-gray-800 rounded-full hover:bg-gray-200 transition z-[101] shadow-lg flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 border border-gray-200">
+        <i class="ph ph-x text-xl sm:text-2xl font-bold"></i>
+      </button>
+      <div class="overflow-hidden rounded-xl bg-white flex items-center justify-center">
+        <img [src]="popupImage" alt="Schedule" class="block w-full h-auto max-w-full max-h-[85vh] object-contain">
       </div>
     </div>
-  }
-</div>
+  </div>
+}

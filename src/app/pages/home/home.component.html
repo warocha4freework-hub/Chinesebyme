@@ -15,63 +15,82 @@
       </svg>
     </button>
 
-    <!-- Hero Background Layers -->
-    @for (bg of heroImages; track bg; let i = $index) {
-      <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out"
-           [ngClass]="{'opacity-100 z-10': currentSlide === i, 'opacity-0 z-0 pointer-events-none': currentSlide !== i}"
-           [style.background-image]="'url(' + bg + ')'">
-      </div>
-    }
+    <!-- Sliding Wrapper -->
+    <div class="flex h-full min-h-[750px] w-full transition-transform duration-700 ease-in-out"
+         [style.transform]="'translateX(-' + (currentSlide * 100) + '%)'">
 
-    <!-- Hero Content Overlay (Shared) -->
-    <section class="absolute inset-0 pt-32 pb-48 md:pb-64 min-h-[750px] z-20 pointer-events-none flex flex-col justify-center bg-black/30 md:bg-black/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pointer-events-auto">
-        <div class="flex grid-cols-1 lg:grid-cols-12 gap-12 items-center justify-center">
-          
-          <div class="lg:col-span-7 space-y-6 lg:text-center mt-8 lg:mt-0 p-4 md:p-0 rounded-2xl">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-700 tracking-tight leading-tight drop-shadow-md">
-              CHINESE <span class="text-gold-500">CAMP</span>
-            </h1>
-            <p class="text-xl sm:text-2xl font-bold text-white leading-snug drop-shadow-md">
-              แคมป์เรียนภาษาจีนและวัฒนธรรมที่ต้าเหลียน
+      <!-- Slide 1: Chinese by me -->
+      <div class="relative w-full shrink-0 min-h-[750px] bg-cover bg-center flex items-center justify-center" [style.background-image]="'url(' + heroImages[0] + ')'">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 pt-32 pb-48 md:pb-64 text-center">
+          <div class="flex flex-col items-center justify-center h-full space-y-6 mt-8 lg:mt-0 p-4 md:p-0">
+            <img src="/assets/images/Transparent.png" alt="Chinese By Me Logo" class="w-auto h-24 sm:h-32 lg:h-40 " />
+            <p class="text-xl sm:text-2xl text-navy-700 leading-relaxed max-w-3xl mx-auto">
+              แนะแนวและให้คำปรึกษาการศึกษาต่อประเทศจีน<br class="hidden sm:block"/> เรียนภาษา วัฒนธรรม และแคมป์ระยะสั้น
             </p>
-            
-            <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/60 shadow-md max-w-xl mx-auto lg:mx-0 space-y-3.5 text-left">
-              <div class="flex align-middle items-center gap-3">
-                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5 w-11 h-11 flex justify-center">
-                  <i class="text-2xl ph ph-calendar-blank yellow-color items-center flex"></i>
-                </span>
-                <div>
-                  <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 1</p>
-                  <p class="text-sm sm:text-base font-semibold text-navy-800">ตุลาคม : 11 – 24 ตุลาคม 2026 <span class="text-xs text-navy-500 font-normal">(2 สัปดาห์)</span></p>
-                </div>
-              </div>
-              
-              <div class="flex items-center gap-3 border-t border-navy-100/50 pt-3.5">
-                <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5 w-11 h-11 flex justify-center">
-                  <i class="text-2xl ph ph-calendar-blank yellow-color items-center flex"></i>
-                </span>
-                <div>
-                  <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 2</p>
-                  <p class="text-sm sm:text-base font-semibold text-navy-800">ธันวาคม : 6 – 19 ธันวาคม 2026 <span class="text-xs text-navy-500 font-normal">(2 สัปดาห์)</span></p>
-                </div>
-              </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-              <a routerLink="/contact" [queryParams]="{enroll: 'true'}" class="flex w-full sm:w-auto bg-navy-800 hover:bg-navy-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-center">
-                <i class="text-2xl ph ph-student mr-2"></i>
-                สมัครเรียนเลย
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+              <a routerLink="/contact" [queryParams]="{enroll: 'true'}" class="flex w-full sm:w-auto bg-navy-800 hover:bg-navy-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-center justify-center">
+                <i class="text-2xl ph ph-student mr-2"></i> สมัครเรียนเลย
               </a>
-              <a routerLink="/study-in-china" class="flex w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 text-center">
-                <i class="text-2xl ph ph-file-text mr-2"></i>
-                รายละเอียดเพิ่มเติม
+              <a routerLink="/study-in-china" class="flex w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 text-center justify-center">
+                <i class="text-2xl ph ph-file-text mr-2"></i> ดูรายละเอียด
               </a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- Slide 2: CHINESE CAMP (Original) -->
+      <div class="relative w-full shrink-0 min-h-[750px] bg-cover bg-center flex items-center" [style.background-image]="'url(' + heroImages[1] + ')'">
+        <div class="absolute inset-0 bg-black/30 md:bg-black/30 z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 pt-32 pb-48 md:pb-64">
+          <div class="flex grid-cols-1 lg:grid-cols-12 gap-12 items-center justify-center">
+            
+            <div class="lg:col-span-7 space-y-6 lg:text-center mt-8 lg:mt-0 p-4 md:p-0 rounded-2xl">
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+                CHINESE <span class="text-gold-500">CAMP</span>
+              </h1>
+              <p class="text-xl sm:text-2xl font-bold text-white leading-snug drop-shadow-md">
+                แคมป์เรียนภาษาจีนและวัฒนธรรมที่ต้าเหลียน
+              </p>
+              
+              <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white/60 shadow-md max-w-xl mx-auto lg:mx-0 space-y-3.5 text-left">
+                <div class="flex align-middle items-center gap-3">
+                  <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5 w-11 h-11 flex justify-center">
+                    <i class="text-2xl ph ph-calendar-blank yellow-color items-center flex"></i>
+                  </span>
+                  <div>
+                    <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 1</p>
+                    <p class="text-sm sm:text-base font-semibold text-navy-800">ตุลาคม : 11 – 24 ตุลาคม 2026 <span class="text-xs text-navy-500 font-normal">(2 สัปดาห์)</span></p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-3 border-t border-navy-100/50 pt-3.5">
+                  <span class="bg-gold-100 text-gold-600 rounded-lg p-2 mt-0.5 w-11 h-11 flex justify-center">
+                    <i class="text-2xl ph ph-calendar-blank yellow-color items-center flex"></i>
+                  </span>
+                  <div>
+                    <p class="text-xs font-bold text-navy-500 uppercase">รอบที่ 2</p>
+                    <p class="text-sm sm:text-base font-semibold text-navy-800">ธันวาคม : 6 – 19 ธันวาคม 2026 <span class="text-xs text-navy-500 font-normal">(2 สัปดาห์)</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <a routerLink="/contact" [queryParams]="{enroll: 'true'}" class="flex w-full sm:w-auto bg-navy-800 hover:bg-navy-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-center justify-center">
+                  <i class="text-2xl ph ph-student mr-2"></i>
+                  สมัครเรียนเลย
+                </a>
+                <a routerLink="/study-in-china" class="flex w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 text-center justify-center">
+                  <i class="text-2xl ph ph-file-text mr-2"></i>
+                  ดูรายละเอียด
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
     <!-- Slider Navigation Dots -->
     <div class="absolute bottom-32 md:bottom-40 left-0 right-0 z-30 flex justify-center gap-3">
@@ -134,19 +153,16 @@
 
                     <div class="mt-auto space-y-4">
                       <div class="flex items-center gap-2 py-2.5 px-3 rounded-lg bg-gray-100 text-gray-400 font-medium text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
+                        <i class="ph ph-bell-simple-ringing mr-2 text-lg"></i>
                         <span>ปิดรับสมัครแล้ว</span>
                       </div>
                       <div class="grid grid-cols-2 gap-3">
                         <button disabled class="py-2.5 rounded-lg border border-[#FBB040]/50 text-[#FBB040] text-xs font-bold text-center bg-transparent flex items-center justify-center gap-1.5 opacity-60">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                          <i class="text-lg ph ph-calendar-blank mr-1"></i>
                           ตารางเรียน
                         </button>
                         <button disabled class="py-2.5 rounded-lg bg-[#FBB040] text-white text-xs font-bold text-center flex items-center justify-center gap-1.5 opacity-60">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /></svg>
-                          สมัครเรียนเลย
+                          <i class="text-lg ph ph-student mr-1 "></i>สมัครเรียนเลย
                         </button>
                       </div>
                     </div>
@@ -177,19 +193,15 @@
 
                     <div class="mt-auto space-y-4">
                       <div class="flex items-center gap-2 py-2.5 px-3 rounded-lg bg-[#E75A3D]/10 text-[#E75A3D] font-medium text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
+                        <i class="ph ph-bell-simple-ringing mr-2 text-lg"></i>
                         <span>เปิดรับสมัคร วันนี้ – 31 ก.ค. 2026</span>
                       </div>
                       <div class="grid grid-cols-2 gap-3">
-                        <a routerLink="/study-in-china" class="py-2.5 rounded-lg border border-[#E75A3D] text-[#E75A3D] text-xs font-bold text-center hover:bg-[#E75A3D]/5 transition duration-150 flex items-center justify-center gap-1.5">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                          ตารางเรียน
-                        </a>
+                        <button (click)="openPopup('/assets/images/AutumnCamp.png')" class="py-2.5 rounded-lg border border-[#E75A3D] text-[#E75A3D] text-xs font-bold text-center hover:bg-[#E75A3D]/5 transition duration-150 flex items-center justify-center gap-1.5">
+                          <i class="text-lg ph ph-calendar-blank mr-1"></i>ตารางเรียน
+                        </button>
                         <a routerLink="/contact" [queryParams]="{camp: camp.id}" class="py-2.5 rounded-lg bg-[#E75A3D] hover:bg-[#D6492C] text-white text-xs font-bold text-center shadow-sm hover:shadow transition duration-150 flex items-center justify-center gap-1.5">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /></svg>
-                          สมัครเรียนเลย
+                          <i class="text-lg ph ph-student mr-1 "></i>สมัครเรียนเลย
                         </a>
                       </div>
                     </div>
@@ -220,19 +232,15 @@
 
                     <div class="mt-auto space-y-4">
                       <div class="flex items-center gap-2 py-2.5 px-3 rounded-lg bg-[#00A3FF]/10 text-[#00A3FF] font-medium text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
+                        <i class="ph ph-bell-simple-ringing mr-2 text-lg"></i>
                         <span>เปิดรับสมัคร วันนี้ – 30 ก.ย. 2026</span>
                       </div>
                       <div class="grid grid-cols-2 gap-3">
-                        <a routerLink="/study-in-china" class="py-2.5 rounded-lg border border-[#00A3FF] text-[#00A3FF] text-xs font-bold text-center hover:bg-[#00A3FF]/5 transition duration-150 flex items-center justify-center gap-1.5">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                          ตารางเรียน
-                        </a>
+                        <button (click)="openPopup('/assets/images/WinterCamp.png')" class="py-2.5 rounded-lg border border-[#00A3FF] text-[#00A3FF] text-xs font-bold text-center hover:bg-[#00A3FF]/5 transition duration-150 flex items-center justify-center gap-1.5">
+                          <i class="text-lg ph ph-calendar-blank mr-1"></i>ตารางเรียน
+                        </button>
                         <a routerLink="/contact" [queryParams]="{camp: camp.id}" class="py-2.5 rounded-lg bg-[#00A3FF] hover:bg-[#0090E6] text-white text-xs font-bold text-center shadow-sm hover:shadow transition duration-150 flex items-center justify-center gap-1.5">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" /></svg>
-                          สมัครเรียนเลย
+                          <i class="text-lg ph ph-student mr-1 "></i> สมัครเรียนเลย
                         </a>
                       </div>
                     </div>
@@ -243,6 +251,12 @@
             }
           }
 
+        </div>
+
+        <!-- Remark Box -->
+        <div class="mt-8 bg-gray-50 border border-gray-200 rounded-2xl py-4 px-6 flex items-center justify-start sm:justify-center gap-2 text-sm text-gray-500 w-full">
+          <i class="ph ph-warning-circle text-lg"></i>
+          <span>หมายเหตุ : ตารางเรียนดังกล่าวเป็นตารางเรียนแบบเบื้องต้นอาจมีการเปลี่ยนแปลงหลังจากสอบวัดระดับภาษาที่มหาวิทยาลัย</span>
         </div>
       </section>
 
@@ -358,4 +372,19 @@
     </section>
 
   </main>
+
+  <!-- Schedule Popup Modal -->
+  @if (showPopup) {
+    <div class="fixed inset-0 z-[100] p-4 sm:p-6 bg-black/80 backdrop-blur-sm fade-in flex items-center justify-center" (click)="closePopup()">
+      <div class="relative w-auto max-w-5xl bg-white rounded-2xl shadow-2xl p-1 sm:p-2" (click)="$event.stopPropagation()">
+        <!-- Close Button overlapping the corner -->
+        <button (click)="closePopup()" class="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 bg-white text-gray-800 rounded-full hover:bg-gray-200 transition z-[101] shadow-lg flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 border border-gray-200">
+          <i class="ph ph-x text-xl sm:text-2xl font-bold"></i>
+        </button>
+        <div class="overflow-hidden rounded-xl bg-white flex items-center justify-center">
+          <img [src]="popupImage" alt="Schedule" class="block w-full h-auto max-w-full max-h-[85vh] object-contain">
+        </div>
+      </div>
+    </div>
+  }
 </div>

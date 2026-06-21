@@ -1,45 +1,40 @@
 <div class="fade-in">
   
   <!-- Hero Section (Replicating Image 1 sky banner with plane and brushstroke) -->
-  <section class="banner relative pt-32 pb-48 overflow-hidden min-h-[600px] md:min-h-[750px] bg-cover bg-center flex items-center" 
-  style="background-image: url('/assets/images/Banner-Aboutus.png');">
+  <section class="banner relative pt-32 pb-48 overflow-hidden min-h-[600px] md:min-h-[800px] bg-cover bg-center flex items-center justify-center" 
+  style="background-image: url('/assets/images/banner-aboutus.png');">
+    <div class="absolute inset-0 bg-black/20 z-0"></div>
+    <div class="max-w-4xl mx-auto px-4 relative z-10 text-center space-y-6">
+      <h1 class="text-4xl md:text-[60px] font-bold tracking-tight leading-tight text-white">
+        เกี่ยวกับเรา
+      </h1>
+      <span class="text-2xl md:text-[24px] block text-white/90 leading-snug"> "Chinesebyme Education Limited Partnership" </span>
+      <!-- Tax ID highlight -->
+      <div class="pt-2">
+        <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 rounded-full text-lg md:text-[16px] font-bold text-white tracking-wider shadow-sm">
+          <span class="font-semibold">เลขประจำตัวผู้เสียภาษี :</span>
+          <strong class="font-extrabold ml-1.5 tracking-wider">
+            {{ contactInfo?.taxId }}
+          </strong>
+        </span>
+      </div>
+    </div>
   </section>
 
   <!-- Overlapping Main Container -->
   <main class="relative -mt-24 z-30 bg-white rounded-t-[40px] md:rounded-t-[80px] shadow-2xl pb-24 border-t border-sky-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
-        <!-- Left Column: DBD Certificate -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="bg-[#faf9f6] border border-[#e8e6df] rounded-2xl p-4 max-w-md w-full shadow-lg relative select-none">
-            <img src="/assets/images/Certification.png" alt="DBD Certificate" class="w-full h-auto rounded-xl">
-          </div>
+      <div class="flex flex-col items-center justify-center text-center max-w-4xl mx-auto space-y-12">
+        <!-- Center: DBD Certificate -->
+        <div class="bg-[#faf9f6] border border-[#e8e6df] rounded-2xl p-4 max-w-sm sm:max-w-md w-full shadow-lg relative select-none">
+          <img src="/assets/images/Certification.png" alt="DBD Certificate" class="w-full h-auto rounded-xl">
         </div>
 
-        <!-- Right Column: Story & Context -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="space-y-2">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800">
-              เกี่ยวกับเรา
-            </h2>
-            <h3 class="text-lg font-bold text-navy-600">
-              Chinesebyme Education Limited Partnership
-            </h3>
-            <div class="w-24 h-1.5 bg-gold-400 rounded-full mt-3"></div>
-          </div>
-
-          <!-- Tax ID highlight -->
-          <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl text-base text-navy-800">
-            <span class="font-semibold">เลขประจำตัวผู้เสียภาษี :</span>
-            <strong class="text-navy-900 font-extrabold ml-1.5 text-lg tracking-wider">
-              {{ contactInfo?.taxId }}
-            </strong>
-          </div>
-
+        <!-- Center: Story & Context -->
+        <div class="space-y-8 flex flex-col items-center">
           <!-- Paragraphs matching exact design text -->
-          <div class="text-navy-700 text-sm sm:text-base space-y-6 leading-relaxed">
+          <div class="text-navy-900 text-sm sm:text-base space-y-6 leading-relaxed max-w-3xl text-center">
             <p>
               เป็นสถาบันที่ก่อตั้งขึ้นในปี พ.ศ. 2566 โดยเริ่มจากปี พ.ศ. 2563 สถาบันเราเปิดเพจในอินสตาแกรม (IG : chinesebyme) สอนภาษาจีนและแนะแนวทางเรียนต่อในประเทศจีนจนมีน้องๆจำนวนมากสนใจเรียนภาษาจีน
             </p>

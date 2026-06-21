@@ -25,6 +25,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     '/assets/images/Dalian1.jpg'
   ];
 
+  // Popup state
+  showPopup = false;
+  popupImage = '';
+
+  openPopup(imagePath: string) {
+    this.popupImage = imagePath;
+    this.showPopup = true;
+    document.body.classList.add('overflow-hidden');
+  }
+
+  closePopup() {
+    this.showPopup = false;
+    document.body.classList.remove('overflow-hidden');
+  }
+
   // News carousel state
   currentNewsPage = 0;
   newsCards = [
@@ -101,6 +116,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.slideInterval) {
       clearInterval(this.slideInterval);
     }
+    document.body.classList.remove('overflow-hidden');
   }
 
   startSlideshow() {
